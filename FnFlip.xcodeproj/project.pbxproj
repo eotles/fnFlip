@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		68591DB42E8D6B8700E63146 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68591D9A2E8D6B8600E63146 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68591DA12E8D6B8600E63146;
+			remoteInfo = FnFlip;
+		};
+		68591DBE2E8D6B8700E63146 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68591D9A2E8D6B8600E63146 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68591DA12E8D6B8600E63146;
+			remoteInfo = FnFlip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		68591DA22E8D6B8600E63146 /* FnFlip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FnFlip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68591DB32E8D6B8700E63146 /* FnFlipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FnFlipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68591DBD2E8D6B8700E63146 /* FnFlipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FnFlipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		68591DA42E8D6B8600E63146 /* FnFlip */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FnFlip;
+			sourceTree = "<group>";
+		};
+		68591DB62E8D6B8700E63146 /* FnFlipTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FnFlipTests;
+			sourceTree = "<group>";
+		};
+		68591DC02E8D6B8700E63146 /* FnFlipUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FnFlipUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		68591D9F2E8D6B8600E63146 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68591DB02E8D6B8700E63146 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68591DBA2E8D6B8700E63146 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		68591D992E8D6B8600E63146 = {
+			isa = PBXGroup;
+			children = (
+				68591DA42E8D6B8600E63146 /* FnFlip */,
+				68591DB62E8D6B8700E63146 /* FnFlipTests */,
+				68591DC02E8D6B8700E63146 /* FnFlipUITests */,
+				68591DA32E8D6B8600E63146 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		68591DA32E8D6B8600E63146 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68591DA22E8D6B8600E63146 /* FnFlip.app */,
+				68591DB32E8D6B8700E63146 /* FnFlipTests.xctest */,
+				68591DBD2E8D6B8700E63146 /* FnFlipUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		68591DA12E8D6B8600E63146 /* FnFlip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68591DC72E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlip" */;
+			buildPhases = (
+				68591D9E2E8D6B8600E63146 /* Sources */,
+				68591D9F2E8D6B8600E63146 /* Frameworks */,
+				68591DA02E8D6B8600E63146 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				68591DA42E8D6B8600E63146 /* FnFlip */,
+			);
+			name = FnFlip;
+			packageProductDependencies = (
+			);
+			productName = FnFlip;
+			productReference = 68591DA22E8D6B8600E63146 /* FnFlip.app */;
+			productType = "com.apple.product-type.application";
+		};
+		68591DB22E8D6B8700E63146 /* FnFlipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68591DCA2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipTests" */;
+			buildPhases = (
+				68591DAF2E8D6B8700E63146 /* Sources */,
+				68591DB02E8D6B8700E63146 /* Frameworks */,
+				68591DB12E8D6B8700E63146 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68591DB52E8D6B8700E63146 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				68591DB62E8D6B8700E63146 /* FnFlipTests */,
+			);
+			name = FnFlipTests;
+			packageProductDependencies = (
+			);
+			productName = FnFlipTests;
+			productReference = 68591DB32E8D6B8700E63146 /* FnFlipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		68591DBC2E8D6B8700E63146 /* FnFlipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68591DCD2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipUITests" */;
+			buildPhases = (
+				68591DB92E8D6B8700E63146 /* Sources */,
+				68591DBA2E8D6B8700E63146 /* Frameworks */,
+				68591DBB2E8D6B8700E63146 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68591DBF2E8D6B8700E63146 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				68591DC02E8D6B8700E63146 /* FnFlipUITests */,
+			);
+			name = FnFlipUITests;
+			packageProductDependencies = (
+			);
+			productName = FnFlipUITests;
+			productReference = 68591DBD2E8D6B8700E63146 /* FnFlipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		68591D9A2E8D6B8600E63146 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					68591DA12E8D6B8600E63146 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					68591DB22E8D6B8700E63146 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 68591DA12E8D6B8600E63146;
+					};
+					68591DBC2E8D6B8700E63146 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 68591DA12E8D6B8600E63146;
+					};
+				};
+			};
+			buildConfigurationList = 68591D9D2E8D6B8600E63146 /* Build configuration list for PBXProject "FnFlip" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 68591D992E8D6B8600E63146;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 68591DA32E8D6B8600E63146 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				68591DA12E8D6B8600E63146 /* FnFlip */,
+				68591DB22E8D6B8700E63146 /* FnFlipTests */,
+				68591DBC2E8D6B8700E63146 /* FnFlipUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		68591DA02E8D6B8600E63146 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68591DB12E8D6B8700E63146 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68591DBB2E8D6B8700E63146 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		68591D9E2E8D6B8600E63146 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68591DAF2E8D6B8700E63146 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68591DB92E8D6B8700E63146 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68591DB52E8D6B8700E63146 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68591DA12E8D6B8600E63146 /* FnFlip */;
+			targetProxy = 68591DB42E8D6B8700E63146 /* PBXContainerItemProxy */;
+		};
+		68591DBF2E8D6B8700E63146 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68591DA12E8D6B8600E63146 /* FnFlip */;
+			targetProxy = 68591DBE2E8D6B8700E63146 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		68591DC52E8D6B8700E63146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		68591DC62E8D6B8700E63146 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		68591DC82E8D6B8700E63146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FnFlip/FnFlip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FnFlip/Preview Content\"";
+				DEVELOPMENT_TEAM = H77QMQGMMH;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		68591DC92E8D6B8700E63146 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FnFlip/FnFlip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FnFlip/Preview Content\"";
+				DEVELOPMENT_TEAM = H77QMQGMMH;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		68591DCB2E8D6B8700E63146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H77QMQGMMH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FnFlip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FnFlip";
+			};
+			name = Debug;
+		};
+		68591DCC2E8D6B8700E63146 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H77QMQGMMH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FnFlip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FnFlip";
+			};
+			name = Release;
+		};
+		68591DCE2E8D6B8700E63146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H77QMQGMMH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = FnFlip;
+			};
+			name = Debug;
+		};
+		68591DCF2E8D6B8700E63146 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H77QMQGMMH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = FnFlip;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		68591D9D2E8D6B8600E63146 /* Build configuration list for PBXProject "FnFlip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68591DC52E8D6B8700E63146 /* Debug */,
+				68591DC62E8D6B8700E63146 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68591DC72E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68591DC82E8D6B8700E63146 /* Debug */,
+				68591DC92E8D6B8700E63146 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68591DCA2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68591DCB2E8D6B8700E63146 /* Debug */,
+				68591DCC2E8D6B8700E63146 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68591DCD2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68591DCE2E8D6B8700E63146 /* Debug */,
+				68591DCF2E8D6B8700E63146 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 68591D9A2E8D6B8600E63146 /* Project object */;
+}
