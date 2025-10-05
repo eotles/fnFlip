@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1620"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "set -euo pipefail&#10;&#10;GEN=&quot;${SRCROOT}/Tools/IconGen.swiftscript&quot;&#10;WORK=&quot;${DERIVED_DATA_DIR}/IconGen&quot;&#10;DEST=&quot;${SRCROOT}/FnFlip/Assets.xcassets/AppIcon.appiconset&quot;&#10;&#10;echo &quot;[IconGen] Script: $GEN&quot;&#10;echo &quot;[IconGen] Work  : $WORK&quot;&#10;echo &quot;[IconGen] Dest  : $DEST&quot;&#10;&#10;rm -rf &quot;$WORK&quot;&#10;mkdir -p &quot;$WORK&quot; &quot;$DEST&quot;&#10;&#10;pushd &quot;$WORK&quot; &gt;/dev/null&#10;/usr/bin/swift &quot;$GEN&quot;&#10;popd &gt;/dev/null&#10;&#10;# choose which set to install&#10;# SET_DIR=&quot;${WORK}/FnFlipAppIcon_Light.appiconset&quot;&#10;SET_DIR=&quot;${WORK}/FnFlipAppIcon_Dark.appiconset&quot;&#10;&#10;if [ ! -d &quot;$SET_DIR&quot; ]; then&#10;  echo &quot;[IconGen] Output not found: $SET_DIR&quot;&#10;  ls -la &quot;$WORK&quot; || true&#10;  exit 1&#10;fi&#10;&#10;ls -l &quot;$SET_DIR&quot; | head -n 8&#10;rsync -a --delete &quot;$SET_DIR/&quot; &quot;$DEST/&quot;&#10;echo &quot;[IconGen] Installed icons from $(basename &quot;$SET_DIR&quot;) into $DEST&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "68591DA12E8D6B8600E63146"
+                     BuildableName = "fnFlip.app"
+                     BlueprintName = "fnFlip"
+                     ReferencedContainer = "container:fnFlip.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "68591DA12E8D6B8600E63146"
+               BuildableName = "fnFlip.app"
+               BlueprintName = "fnFlip"
+               ReferencedContainer = "container:fnFlip.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "68591DB22E8D6B8700E63146"
+               BuildableName = "fnFlipTests.xctest"
+               BlueprintName = "fnFlipTests"
+               ReferencedContainer = "container:fnFlip.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "68591DBC2E8D6B8700E63146"
+               BuildableName = "fnFlipUITests.xctest"
+               BlueprintName = "fnFlipUITests"
+               ReferencedContainer = "container:fnFlip.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "68591DA12E8D6B8600E63146"
+            BuildableName = "fnFlip.app"
+            BlueprintName = "fnFlip"
+            ReferencedContainer = "container:fnFlip.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "68591DA12E8D6B8600E63146"
+            BuildableName = "fnFlip.app"
+            BlueprintName = "fnFlip"
+            ReferencedContainer = "container:fnFlip.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

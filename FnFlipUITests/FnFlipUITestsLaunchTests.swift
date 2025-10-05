@@ -1,13 +1,6 @@
-//
-//  FnFlipUITestsLaunchTests.swift
-//  FnFlipUITests
-//
-//  Created by Erkin Otles on 10/1/25.
-//
-
 import XCTest
 
-final class FnFlipUITestsLaunchTests: XCTestCase {
+final class fnFlipUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,17 +1,9 @@
-//
-//  FnFlipApp.swift
-//  FnFlip
-//
-//  Created by Erkin Otles on 10/1/25.
-//
-
 import SwiftUI
 
 @main
-struct FnFlipApp: App {
+struct fnFlipApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+        Settings { EmptyView() } // no visible settings window
     }
 }

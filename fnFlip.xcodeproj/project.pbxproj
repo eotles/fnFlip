@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		686F689C2E92B6F700526781 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 686F689B2E92B6F700526781 /* LICENSE */; };
+		686F68A12E92B89900526781 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 686F68A02E92B89900526781 /* README.md */; };
+		686F68A32E92B8C200526781 /* NOTICE in Resources */ = {isa = PBXBuildFile; fileRef = 686F68A22E92B8C200526781 /* NOTICE */; };
+		686F68A52E92B8FE00526781 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 686F68A42E92B8FE00526781 /* CONTRIBUTING.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		68591DB42E8D6B8700E63146 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,10 +31,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		68591DA22E8D6B8600E63146 /* FnFlip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FnFlip.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		68591DB32E8D6B8700E63146 /* FnFlipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FnFlipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		68591DBD2E8D6B8700E63146 /* FnFlipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FnFlipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68591DA22E8D6B8600E63146 /* fnFlip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fnFlip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68591DB32E8D6B8700E63146 /* fnFlipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fnFlipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68591DBD2E8D6B8700E63146 /* fnFlipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fnFlipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		686F689B2E92B6F700526781 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		686F68A02E92B89900526781 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		686F68A22E92B8C200526781 /* NOTICE */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE; sourceTree = "<group>"; };
+		686F68A42E92B8FE00526781 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		686F689F2E92B77F00526781 /* Exceptions for "Tools" folder in "fnFlip" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"apply-headers.sh",
+			);
+			target = 68591DA12E8D6B8600E63146 /* fnFlip */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		68591DA42E8D6B8600E63146 /* FnFlip */ = {
@@ -43,6 +64,17 @@
 		68591DC02E8D6B8700E63146 /* FnFlipUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = FnFlipUITests;
+			sourceTree = "<group>";
+		};
+		68591DE92E8E13BB00E63146 /* Tools */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				686F689F2E92B77F00526781 /* Exceptions for "Tools" folder in "fnFlip" target */,
+			);
+			explicitFileTypes = {
+				IconGen.swiftscript = text;
+			};
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +107,11 @@
 		68591D992E8D6B8600E63146 = {
 			isa = PBXGroup;
 			children = (
+				686F68A02E92B89900526781 /* README.md */,
+				686F68A22E92B8C200526781 /* NOTICE */,
+				686F68A42E92B8FE00526781 /* CONTRIBUTING.md */,
+				686F689B2E92B6F700526781 /* LICENSE */,
+				68591DE92E8E13BB00E63146 /* Tools */,
 				68591DA42E8D6B8600E63146 /* FnFlip */,
 				68591DB62E8D6B8700E63146 /* FnFlipTests */,
 				68591DC02E8D6B8700E63146 /* FnFlipUITests */,
@@ -85,9 +122,9 @@
 		68591DA32E8D6B8600E63146 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68591DA22E8D6B8600E63146 /* FnFlip.app */,
-				68591DB32E8D6B8700E63146 /* FnFlipTests.xctest */,
-				68591DBD2E8D6B8700E63146 /* FnFlipUITests.xctest */,
+				68591DA22E8D6B8600E63146 /* fnFlip.app */,
+				68591DB32E8D6B8700E63146 /* fnFlipTests.xctest */,
+				68591DBD2E8D6B8700E63146 /* fnFlipUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		68591DA12E8D6B8600E63146 /* FnFlip */ = {
+		68591DA12E8D6B8600E63146 /* fnFlip */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68591DC72E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlip" */;
+			buildConfigurationList = 68591DC72E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "fnFlip" */;
 			buildPhases = (
 				68591D9E2E8D6B8600E63146 /* Sources */,
 				68591D9F2E8D6B8600E63146 /* Frameworks */,
@@ -110,16 +147,16 @@
 			fileSystemSynchronizedGroups = (
 				68591DA42E8D6B8600E63146 /* FnFlip */,
 			);
-			name = FnFlip;
+			name = fnFlip;
 			packageProductDependencies = (
 			);
 			productName = FnFlip;
-			productReference = 68591DA22E8D6B8600E63146 /* FnFlip.app */;
+			productReference = 68591DA22E8D6B8600E63146 /* fnFlip.app */;
 			productType = "com.apple.product-type.application";
 		};
-		68591DB22E8D6B8700E63146 /* FnFlipTests */ = {
+		68591DB22E8D6B8700E63146 /* fnFlipTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68591DCA2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipTests" */;
+			buildConfigurationList = 68591DCA2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "fnFlipTests" */;
 			buildPhases = (
 				68591DAF2E8D6B8700E63146 /* Sources */,
 				68591DB02E8D6B8700E63146 /* Frameworks */,
@@ -133,16 +170,16 @@
 			fileSystemSynchronizedGroups = (
 				68591DB62E8D6B8700E63146 /* FnFlipTests */,
 			);
-			name = FnFlipTests;
+			name = fnFlipTests;
 			packageProductDependencies = (
 			);
 			productName = FnFlipTests;
-			productReference = 68591DB32E8D6B8700E63146 /* FnFlipTests.xctest */;
+			productReference = 68591DB32E8D6B8700E63146 /* fnFlipTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		68591DBC2E8D6B8700E63146 /* FnFlipUITests */ = {
+		68591DBC2E8D6B8700E63146 /* fnFlipUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68591DCD2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipUITests" */;
+			buildConfigurationList = 68591DCD2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "fnFlipUITests" */;
 			buildPhases = (
 				68591DB92E8D6B8700E63146 /* Sources */,
 				68591DBA2E8D6B8700E63146 /* Frameworks */,
@@ -156,11 +193,11 @@
 			fileSystemSynchronizedGroups = (
 				68591DC02E8D6B8700E63146 /* FnFlipUITests */,
 			);
-			name = FnFlipUITests;
+			name = fnFlipUITests;
 			packageProductDependencies = (
 			);
 			productName = FnFlipUITests;
-			productReference = 68591DBD2E8D6B8700E63146 /* FnFlipUITests.xctest */;
+			productReference = 68591DBD2E8D6B8700E63146 /* fnFlipUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +223,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 68591D9D2E8D6B8600E63146 /* Build configuration list for PBXProject "FnFlip" */;
+			buildConfigurationList = 68591D9D2E8D6B8600E63146 /* Build configuration list for PBXProject "fnFlip" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +237,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				68591DA12E8D6B8600E63146 /* FnFlip */,
-				68591DB22E8D6B8700E63146 /* FnFlipTests */,
-				68591DBC2E8D6B8700E63146 /* FnFlipUITests */,
+				68591DA12E8D6B8600E63146 /* fnFlip */,
+				68591DB22E8D6B8700E63146 /* fnFlipTests */,
+				68591DBC2E8D6B8700E63146 /* fnFlipUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +249,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686F689C2E92B6F700526781 /* LICENSE in Resources */,
+				686F68A32E92B8C200526781 /* NOTICE in Resources */,
+				686F68A12E92B89900526781 /* README.md in Resources */,
+				686F68A52E92B8FE00526781 /* CONTRIBUTING.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,12 +299,12 @@
 /* Begin PBXTargetDependency section */
 		68591DB52E8D6B8700E63146 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 68591DA12E8D6B8600E63146 /* FnFlip */;
+			target = 68591DA12E8D6B8600E63146 /* fnFlip */;
 			targetProxy = 68591DB42E8D6B8700E63146 /* PBXContainerItemProxy */;
 		};
 		68591DBF2E8D6B8700E63146 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 68591DA12E8D6B8600E63146 /* FnFlip */;
+			target = 68591DA12E8D6B8600E63146 /* fnFlip */;
 			targetProxy = 68591DBE2E8D6B8700E63146 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -273,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -336,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -392,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = FnFlip/FnFlip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -401,13 +445,15 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Erkin Ötleş";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlip;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.fnFlip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -419,6 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = FnFlip/FnFlip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -428,13 +475,15 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Erkin Ötleş";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = eotles.FnFlip;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = eotles.fnFlip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -455,7 +504,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FnFlip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FnFlip";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fnFlip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/fnFlip";
 			};
 			name = Debug;
 		};
@@ -473,7 +522,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FnFlip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FnFlip";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fnFlip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/fnFlip";
 			};
 			name = Release;
 		};
@@ -512,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		68591D9D2E8D6B8600E63146 /* Build configuration list for PBXProject "FnFlip" */ = {
+		68591D9D2E8D6B8600E63146 /* Build configuration list for PBXProject "fnFlip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68591DC52E8D6B8700E63146 /* Debug */,
@@ -521,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68591DC72E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlip" */ = {
+		68591DC72E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "fnFlip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68591DC82E8D6B8700E63146 /* Debug */,
@@ -530,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68591DCA2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipTests" */ = {
+		68591DCA2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "fnFlipTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68591DCB2E8D6B8700E63146 /* Debug */,
@@ -539,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68591DCD2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "FnFlipUITests" */ = {
+		68591DCD2E8D6B8700E63146 /* Build configuration list for PBXNativeTarget "fnFlipUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68591DCE2E8D6B8700E63146 /* Debug */,
