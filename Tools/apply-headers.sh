@@ -1,140 +1,168 @@
 #!/usr/bin/env bash
-# apply-headers.sh — normalize headers & SPDX across the repo
-# Copyright (c) 2025 Erkin Ötleş
-# Licensed under: MIT + Commons Clause (see LICENSE)
-# SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0
+# apply-headers.sh
+# Ensure all Swift source files carry a consistent header.
+# Usage:
+#   ./Tools/apply-headers.sh            # apply to all git-tracked Swift files
+#   ./Tools/apply-headers.sh path1 ...  # apply to specific files or directories
 
 set -euo pipefail
 
-YEAR="2025"
-OWNER="Erkin Ötleş"
-STAMP="$(date +%Y%m%d-%H%M%S)"
-BACKUP_DIR=".headers_backup/${STAMP}"
-mkdir -p "${BACKUP_DIR}"
+# --- Configuration -----------------------------------------------------------
+PROJECT_NAME="fnFlip"
+AUTHOR_NAME="Erkin Ötleş"
+CURRENT_YEAR="$(date +%Y)"
 
-read -r -d '' SWIFT_HEADER <<'EOF'
-// %f
-// fnFlip
-//
-// Copyright (c) YEAR OWNER
-// Licensed under: MIT + Commons Clause (see LICENSE in repo root)
-// SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0
-//
-EOF
-SWIFT_HEADER="${SWIFT_HEADER//YEAR/$YEAR}"
-SWIFT_HEADER="${SWIFT_HEADER//OWNER/$OWNER}"
+# File globs to include by default (git tracked only)
+DEFAULT_GLOBS=("*.swift" "*.swiftscript")
 
-read -r -d '' SH_HEADER <<'EOF'
-# %f
-# Copyright (c) YEAR OWNER
-# Licensed under: MIT + Commons Clause (see LICENSE)
-# SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0
+# Folders to ignore if paths are given
+IGNORE_DIRS=(
+  ".git"
+  "Pods"
+  "Carthage"
+  "DerivedData"
+  "build"
+  ".build"
+  "Tools/dist"
+)
 
-EOF
-SH_HEADER="${SH_HEADER//YEAR/$YEAR}"
-SH_HEADER="${SH_HEADER//OWNER/$OWNER}"
-
-changed=0
-
-normalize_swift() {
-  local f="$1"
-  cp -p "$f" "${BACKUP_DIR}/$(basename "$f")"
-
-  # strip existing leading // comments and blank lines
-  awk '
-    BEGIN { skipping=1 }
-    {
-      if (skipping==1) {
-        if ($0 ~ /^\/\//) next
-        if ($0 ~ /^[[:space:]]*$/) next
-        skipping=0
-        print
-      } else {
-        print
-      }
-    }
-  ' "$f" > "${f}.body"
-
-  {
-    printf "%s\n" "${SWIFT_HEADER//%f/$(basename "$f")}"
-    cat "${f}.body"
-  } > "${f}.new"
-
-  mv "${f}.new" "$f"
-  rm -f "${f}.body"
-  changed=$((changed+1))
+# --- Helpers ----------------------------------------------------------------
+is_ignored_dir() {
+  local p="$1"
+  for d in "${IGNORE_DIRS[@]}"; do
+    if [[ "$p" == *"/$d/"* || "$(basename "$p")" == "$d" ]]; then
+      return 0
+    fi
+  done
+  return 1
 }
 
-normalize_sh() {
-  local f="$1"
-  cp -p "$f" "${BACKUP_DIR}/$(basename "$f")"
+# Return 0 if the file already has our SPDX header in the first 30 lines
+has_spdx_header() {
+  LC_ALL=C head -n 30 "$1" | grep -q 'SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0' || return 1
+}
 
-  local first
-  first="$(head -n1 "$f" || true)"
-  local has_shebang=0
-  [[ "$first" =~ ^#! ]] && has_shebang=1
+# Build the header text for a given filename
+make_header() {
+  local fname="$1"
+  cat <<EOF
+//
+//  ${fname}
+//  ${PROJECT_NAME}
+//
+//  Copyright (c) ${CURRENT_YEAR} ${AUTHOR_NAME}
+//  Licensed under: MIT + Commons Clause (see LICENSE in repo root)
+//  SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0
+//
+EOF
+}
 
-  if [[ $has_shebang -eq 1 ]]; then
-    tail -n +2 "$f" > "${f}.tail"
-    # strip leading # comments and blanks from the tail
+# Strip an existing top comment block if it already contains an SPDX line,
+# then prepend the fresh header. If no SPDX header is found, just prepend.
+apply_header() {
+  local file="$1"
+  local tmp
+  tmp="$(mktemp)"
+
+  local base
+  base="$(basename "$file")"
+
+  if has_spdx_header "$file"; then
+    # Remove the leading comment block up to and including the first blank line
+    # only if that block contains our SPDX line.
     awk '
-      BEGIN { skipping=1 }
+      BEGIN{spdx=0; inhead=1}
+      NR<=30 && /SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0/ { spdx=1 }
       {
-        if (skipping==1) {
-          if ($0 ~ /^#/) next
-          if ($0 ~ /^[[:space:]]*$/) next
-          skipping=0
-          print
-        } else {
-          print
+        if(inhead){
+          if($0 ~ /^\/\/|^$/){
+            if($0 ~ /^$/){ inhead=0 }
+            next
+          } else {
+            inhead=0
+          }
         }
+        print $0
       }
-    ' "${f}.tail" > "${f}.body"
-    {
-      echo "$first"
-      printf "%s" "${SH_HEADER//%f/$(basename "$f")}"
-      cat "${f}.body"
-    } > "${f}.new"
-    rm -f "${f}.tail" "${f}.body"
+      END{ if(spdx==0) exit 2 }
+    ' "$file" > "$tmp" || {
+      # If awk exit 2 (no SPDX in head), fall back to full file content
+      cat "$file" > "$tmp"
+    }
   else
-    # no shebang
-    awk '
-      BEGIN { skipping=1 }
-      {
-        if (skipping==1) {
-          if ($0 ~ /^#/) next
-          if ($0 ~ /^[[:space:]]*$/) next
-          skipping=0
-          print
-        } else {
-          print
-        }
-      }
-    ' "$f" > "${f}.body"
-    {
-      echo "#!/usr/bin/env bash"
-      printf "%s" "${SH_HEADER//%f/$(basename "$f")}"
-      cat "${f}.body"
-    } > "${f}.new"
-    rm -f "${f}.body"
-    chmod +x "${f}.new"
+    cat "$file" > "$tmp"
   fi
 
-  mv "${f}.new" "$f"
-  changed=$((changed+1))
+  {
+    make_header "$base"
+    echo
+    cat "$tmp"
+  } > "$file".with_header && mv "$file".with_header "$file"
+  rm -f "$tmp"
 }
 
-# Swift sources
-while IFS= read -r -d '' f; do
-  normalize_swift "$f"
-done < <(find . -type f -name "*.swift" -print0)
+# Expand input paths into a list of target files
+collect_targets() {
+  local -a out=()
+  if [[ "$#" -eq 0 ]]; then
+    # No args: operate on git-tracked files matching our globs
+    for g in "${DEFAULT_GLOBS[@]}"; do
+      while IFS= read -r f; do
+        [[ -f "$f" ]] && out+=("$f")
+      done < <(git ls-files "$g" 2>/dev/null || true)
+    done
+  else
+    # Args present: walk them and pick matching files
+    for p in "$@"; do
+      if [[ -d "$p" ]]; then
+        if is_ignored_dir "$p"; then
+          continue
+        fi
+        while IFS= read -r f; do
+          case "$f" in
+            *.swift|*.swiftscript) out+=("$f") ;;
+          esac
+        done < <(find "$p" -type f \( -name "*.swift" -o -name "*.swiftscript" \) \
+                 $(printf ' %s ' $(for d in "${IGNORE_DIRS[@]}"; do echo -n " -not -path */$d/*"; done)) )
+      elif [[ -f "$p" ]]; then
+        case "$p" in
+          *.swift|*.swiftscript) out+=("$p") ;;
+        esac
+      fi
+    done
+  fi
 
-# Shell scripts in Tools
-if [ -d Tools ]; then
-  while IFS= read -r -d '' f; do
-    normalize_sh "$f"
-  done < <(find Tools -type f \( -name "*.sh" -o -name "autopackage" -o -name "*.command" \) -print0)
-fi
+  # De-duplicate and print one per line
+  printf '%s\n' "${out[@]}" | awk 'NF && !seen[$0]++'
+}
 
-echo "Headers normalized. Backups saved in ${BACKUP_DIR}"
-echo "Files changed: ${changed}"
+# --- Main -------------------------------------------------------------------
+main() {
+  local updated=0
+  local any=0
+
+  # Iterate without using mapfile, works on macOS Bash 3.x
+  while IFS= read -r f; do
+    any=1
+    # Skip empty lines
+    [[ -z "$f" ]] && continue
+
+    # Skip non-text files defensively
+    if file -b "$f" | grep -qi 'text'; then
+      apply_header "$f"
+      ((updated++))
+      echo "  ✓ $f"
+    else
+      echo "  - Skipped non-text: $f"
+    fi
+  done < <(collect_targets "$@")
+
+  if [[ "$any" -eq 0 ]]; then
+    echo "No matching files found." >&2
+    exit 0
+  fi
+
+  echo "Done. Updated $updated files."
+}
+
+main "$@"
