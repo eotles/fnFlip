@@ -37,9 +37,13 @@ is_ignored_dir() {
   return 1
 }
 
-# Return 0 if the file already has our SPDX header in the first 30 lines
+# Return 0 if the file already has our SPDX header in the first ~40 lines
 has_spdx_header() {
-  LC_ALL=C head -n 30 "$1" | grep -q 'SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0' || return 1
+  LC_ALL=C head -n 40 "$1" | grep -q 'SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0' || return 1
+}
+
+has_shebang_first_line() {
+  LC_ALL=C head -n 1 "$1" | grep -q '^#!' || return 1
 }
 
 # Build the header text for a given filename
@@ -57,62 +61,52 @@ make_header() {
 EOF
 }
 
-# Strip an existing top comment block if it already contains an SPDX line,
-# then prepend the fresh header. If no SPDX header is found, just prepend.
 apply_header() {
   local file="$1"
+
+  # If header already present, do nothing
+  if has_spdx_header "$file"; then
+    echo "  = Already has header: $file"
+    return 0
+  fi
+
   local tmp
   tmp="$(mktemp)"
-
   local base
   base="$(basename "$file")"
 
-  if has_spdx_header "$file"; then
-    # Remove the leading comment block up to and including the first blank line
-    # only if that block contains our SPDX line.
-    awk '
-      BEGIN{spdx=0; inhead=1}
-      NR<=30 && /SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0/ { spdx=1 }
-      {
-        if(inhead){
-          if($0 ~ /^\/\/|^$/){
-            if($0 ~ /^$/){ inhead=0 }
-            next
-          } else {
-            inhead=0
-          }
-        }
-        print $0
-      }
-      END{ if(spdx==0) exit 2 }
-    ' "$file" > "$tmp" || {
-      # If awk exit 2 (no SPDX in head), fall back to full file content
-      cat "$file" > "$tmp"
-    }
+  if has_shebang_first_line "$file"; then
+    # Keep the shebang on line 1, insert header after it
+    {
+      head -n 1 "$file"
+      echo
+      make_header "$base"
+      echo
+      tail -n +2 "$file"
+    } > "$tmp"
   else
-    cat "$file" > "$tmp"
+    {
+      make_header "$base"
+      echo
+      cat "$file"
+    } > "$tmp"
   fi
 
-  {
-    make_header "$base"
-    echo
-    cat "$tmp"
-  } > "$file".with_header && mv "$file".with_header "$file"
-  rm -f "$tmp"
+  mv "$tmp" "$file"
 }
 
 # Expand input paths into a list of target files
 collect_targets() {
   local -a out=()
   if [[ "$#" -eq 0 ]]; then
-    # No args: operate on git-tracked files matching our globs
+    # No args, operate on git-tracked files matching our globs
     for g in "${DEFAULT_GLOBS[@]}"; do
       while IFS= read -r f; do
         [[ -f "$f" ]] && out+=("$f")
       done < <(git ls-files "$g" 2>/dev/null || true)
     done
   else
-    # Args present: walk them and pick matching files
+    # Args present, walk them and pick matching files
     for p in "$@"; do
       if [[ -d "$p" ]]; then
         if is_ignored_dir "$p"; then
@@ -141,17 +135,13 @@ main() {
   local updated=0
   local any=0
 
-  # Iterate without using mapfile, works on macOS Bash 3.x
   while IFS= read -r f; do
     any=1
-    # Skip empty lines
     [[ -z "$f" ]] && continue
 
-    # Skip non-text files defensively
     if file -b "$f" | grep -qi 'text'; then
       apply_header "$f"
       ((updated++))
-      echo "  ✓ $f"
     else
       echo "  - Skipped non-text: $f"
     fi
@@ -162,7 +152,7 @@ main() {
     exit 0
   fi
 
-  echo "Done. Updated $updated files."
+  echo "Done. Processed $updated files."
 }
 
 main "$@"

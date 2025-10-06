@@ -2,8 +2,13 @@
 
 A tiny macOS menu bar app to switch between media keys and standard function keys.
 
-- Fast, non-blocking toggle
-- Optional Launch at Login (uses SMAppService)
+Toggle MacOS keyboard between Standard F1, F2, etc. and Hardware Keys. Helpful when using Epic Hyperspace on a Mac.
+
+Technical highlights:
+- Fast, non-blocking OS toggle
+- Default optional Launch at Login (uses SMAppService)
+- IconGen called during build phase automatically generates icon assets for application & installer
+- Autopackage functionality quickly takes notarized archive and makes .pkg
 - Signed, hardened runtime, and ready for notarized packaging
 
 ## Install

@@ -1,3 +1,5 @@
+#!/usr/bin/swift
+
 //
 //  IconGen.swiftscript
 //  fnFlip
@@ -7,7 +9,6 @@
 //  SPDX-License-Identifier: MIT AND LicenseRef-Commons-Clause-1.0
 //
 
-#!/usr/bin/swift
 import AppKit
 import Foundation
 
@@ -18,16 +19,31 @@ import Foundation
 enum Shape { case roundedSquare, pillWide }
 let shape: Shape = .roundedSquare
 
-let lightFillColor: NSColor = .black   // for Light variant
-let darkFillColor:  NSColor = .white   // for Dark variant
+let lightFillColor: NSColor = .black
+let darkFillColor:  NSColor = .white
 
 let sizesPoints: [Int] = [16, 32, 128, 256, 512]
 
 let lightSetName = "fnFlipAppIcon_Light.appiconset"
 let darkSetName  = "fnFlipAppIcon_Dark.appiconset"
 
+// Installer backgrounds
+let installerBGDir = "InstallerBackgrounds"
+let installerBGBaseName = "fnflip-installer"
+let installerBGSize = NSSize(width: 1024, height: 640)
+let lightBG = NSColor(calibratedWhite: 0.97, alpha: 1.0)
+let darkBG  = NSColor(calibratedWhite: 0.10, alpha: 1.0)
+let lightText = NSColor(calibratedWhite: 0.20, alpha: 1.0)
+let darkText  = NSColor(calibratedWhite: 0.95, alpha: 1.0)
+
+// Mark sizing/position for background (bottom-left)
+let installerMarkScale: CGFloat = 0.42   // relative to shortest edge
+let installerMarkInsetX: CGFloat = 12.0  // px from left edge
+let installerMarkInsetY: CGFloat = 12.0  // px from bottom edge
+let drawInstallerTitleText = false       // keep the background clean
+
 // -------------------------
-// Local helpers (standalone)
+// Helpers
 // -------------------------
 
 @inline(__always)
@@ -58,10 +74,7 @@ func makeTextGlyph(
     paragraph.alignment = .center
 
     let attrs: [NSAttributedString.Key: Any] = [
-        .font: font,
-        .foregroundColor: color,
-        .kern: letterSpacing,
-        .paragraphStyle: paragraph
+        .font: font, .foregroundColor: color, .kern: letterSpacing, .paragraphStyle: paragraph
     ]
 
     let attr = NSAttributedString(string: text, attributes: attrs)
@@ -80,13 +93,12 @@ func makeTextGlyph(
 }
 
 // -------------------------
-// Rendering
+// Icon rendering
 // -------------------------
 
 func drawOnIconInto(rep: NSBitmapImageRep, fillColor: NSColor, shape: Shape) {
     let side = CGFloat(rep.pixelsWide)
 
-    // pill geometry
     let pillSize: NSSize
     let cornerRadius: CGFloat
     switch shape {
@@ -98,7 +110,6 @@ func drawOnIconInto(rep: NSBitmapImageRep, fillColor: NSColor, shape: Shape) {
         cornerRadius = side * 0.12
     }
 
-    // typography
     let padding = side * 0.07
     let glyphPointSize = side * 0.38
 
@@ -107,11 +118,9 @@ func drawOnIconInto(rep: NSBitmapImageRep, fillColor: NSColor, shape: Shape) {
         NSGraphicsContext.current = ctx
         ctx.imageInterpolation = .high
 
-        // clear background
         NSColor.clear.setFill()
         NSBezierPath(rect: NSRect(x: 0, y: 0, width: side, height: side)).fill()
 
-        // filled pill
         let pillRect = NSRect(
             x: (side - pillSize.width) / 2,
             y: (side - pillSize.height) / 2,
@@ -122,7 +131,6 @@ func drawOnIconInto(rep: NSBitmapImageRep, fillColor: NSColor, shape: Shape) {
         fillColor.setFill()
         path.fill()
 
-        // “fn” cutout
         let glyph = makeTextGlyph(text: "fn", pointSize: glyphPointSize, weight: .semibold)
         let target = pillRect.insetBy(dx: padding, dy: padding)
         let fit = aspectFitRect(imageSize: glyph.size, in: target)
@@ -144,9 +152,79 @@ func renderOnIconBitmap(sidePx: Int, fillColor: NSColor, shape: Shape) -> NSBitm
         bytesPerRow: 0,
         bitsPerPixel: 0
     ) else { return nil }
-
     drawOnIconInto(rep: rep, fillColor: fillColor, shape: shape)
     return rep
+}
+
+// -------------------------
+// Installer background rendering
+// -------------------------
+
+@discardableResult
+func renderInstallerBackground(
+    size: NSSize,
+    fillColor: NSColor,
+    bgColor: NSColor,
+    titleColor: NSColor,
+    outURL: URL
+) -> Bool {
+    let scale: CGFloat = 2.0
+    let px = NSSize(width: size.width * scale, height: size.height * scale)
+
+    guard let rep = NSBitmapImageRep(
+        bitmapDataPlanes: nil,
+        pixelsWide: Int(px.width),
+        pixelsHigh: Int(px.height),
+        bitsPerSample: 8,
+        samplesPerPixel: 4,
+        hasAlpha: true,
+        isPlanar: false,
+        colorSpaceName: .deviceRGB,
+        bytesPerRow: 0,
+        bitsPerPixel: 0
+    ) else { return false }
+
+    NSGraphicsContext.saveGraphicsState()
+    if let ctx = NSGraphicsContext(bitmapImageRep: rep) {
+        NSGraphicsContext.current = ctx
+        ctx.cgContext.scaleBy(x: scale, y: scale)
+
+        // fill
+        bgColor.setFill()
+        NSBezierPath(rect: NSRect(origin: .zero, size: size)).fill()
+
+        // big mark, bottom-left
+        let iconSide = min(size.width, size.height) * installerMarkScale
+        if let iconRep = renderOnIconBitmap(sidePx: Int(iconSide * scale), fillColor: fillColor, shape: shape),
+           let cg = iconRep.cgImage {
+            let iconRect = NSRect(
+                x: installerMarkInsetX,
+                y: installerMarkInsetY,
+                width: iconSide,
+                height: iconSide
+            )
+            ctx.cgContext.interpolationQuality = .high
+            ctx.cgContext.draw(cg, in: iconRect)
+        }
+
+        if drawInstallerTitleText {
+            let title = "fnFlip"
+            let font = NSFont.systemFont(ofSize: 40, weight: .semibold)
+            let para = NSMutableParagraphStyle()
+            para.alignment = .left
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: font, .foregroundColor: titleColor, .paragraphStyle: para
+            ]
+            let attr = NSAttributedString(string: title, attributes: attrs)
+            let box = CGRect(x: installerMarkInsetX, y: installerMarkInsetY + 16 + iconSide, width: 600, height: 60)
+            attr.draw(in: box)
+        }
+    }
+    NSGraphicsContext.restoreGraphicsState()
+
+    guard let png = rep.representation(using: .png, properties: [:]) else { return false }
+    do { try png.write(to: outURL); fputs("[installer] wrote \(outURL.path)\n", stderr); return true }
+    catch { fputs("error writing installer background: \(error)\n", stderr); return false }
 }
 
 // -------------------------
@@ -188,13 +266,30 @@ func writeSet(folderName: String, fillColor: NSColor, shape: Shape) throws {
 }
 
 // -------------------------
-// Script entry
+// Entry
 // -------------------------
 
 do {
     try writeSet(folderName: lightSetName, fillColor: lightFillColor, shape: shape)
     try writeSet(folderName: darkSetName,  fillColor: darkFillColor,  shape: shape)
-    print("done. Two .appiconset folders created in:", FileManager.default.currentDirectoryPath)
+
+    let cwd = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+    let bgDir = cwd.appendingPathComponent(installerBGDir, isDirectory: true)
+    try? FileManager.default.removeItem(at: bgDir)
+    try FileManager.default.createDirectory(at: bgDir, withIntermediateDirectories: true)
+
+    _ = renderInstallerBackground(
+        size: installerBGSize, fillColor: lightFillColor,
+        bgColor: lightBG, titleColor: lightText,
+        outURL: bgDir.appendingPathComponent("\(installerBGBaseName)-light.png")
+    )
+    _ = renderInstallerBackground(
+        size: installerBGSize, fillColor: darkFillColor,
+        bgColor: darkBG, titleColor: darkText,
+        outURL: bgDir.appendingPathComponent("\(installerBGBaseName)-dark.png")
+    )
+
+    print("done. Two .appiconset folders and installer backgrounds created in:", FileManager.default.currentDirectoryPath)
 } catch {
     fputs("error: \(error)\n", stderr)
     exit(1)
